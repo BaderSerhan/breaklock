@@ -1,5 +1,5 @@
 !function(t){
-	
+	 mydifficulttylevel=0;
 	function e(i){
 		if(n[i])return n[i].exports;
 		var a=n[i]={i:i,l:!1,exports:{}};
@@ -242,6 +242,8 @@
 																						return r(t,[{key:"setupTemplate",value:function(){
 																							return this.el=T.default.create("div","game-layout view",[T.default.create("div","view-bloc game-layout-dashboard",[this.statusBar.el,T.default.create("div","history-wrap",[this.history.el])]),T.default.create("div","view-bloc game-layout-lock",[this.lock.el]),this.summary.el]),this.el}},
 																							{key:"start",value:function(t,e){
+																								mydifficulttylevel=e;
+																								alert(mydifficulttylevel);
 																								switch(this.type=t,this.difficulty=e,this.lock.setDotLength(e),this.pattern=new v.default(e),this.pattern.fillRandomly(),this.history.clear("Connect "+e+" dots"),this.count=0,this.isEnded=!1,t){
 																									case b.default.GAME.TYPE.PRACTICE:return this.statusBar.setCounter(0);case b.default.GAME.TYPE.CHALLENGE:return this.statusBar.setCounter(10);case b.default.GAME.TYPE.COUNTDOWN:return this.statusBar.setCountdown(60)}
 																									}
@@ -370,11 +372,30 @@
 													{key:"setContent",value:function(t,e){this.titleEl.classList.remove("fail"),this.titleEl.classList.remove("success"),this.titleEl.classList.add(t?"success":"fail"),(0,v.default)(this.titleEl,t?"Success!":"Fail!"),this.detailsEl.textContent=(0,s.default)(t,e),this.revealEl.classList[t?"add":"remove"]("hide"),this.updateSocialLinks(),this.toggle(!0)}},
 													{key:"toggle",value:function(t){t=void 0!=t?t:!this.el.classList.contains("active"),this.el.classList[t?"add":"remove"]("active")}},{key:"triggerAction",
 													value:function(t){var e=parseInt(t.currentTarget.getAttribute("rel")||0,10);this.onAction(e)}},{key:"updateSocialLinks",
-													value:function(){this.socialButtons.forEach(function(t){var e=t.getAttribute("platform"),n=l.default.SOCIAL.PLATFORMS[e];t.setAttribute("href",n.URL(l.default.URL,l.default.SOCIAL.MESSAGE,l.default.SOCIAL.TAGS))})}}]),t}();e.default=y},
+													value:function(){
+														this.socialButtons.forEach(function(t){
+var e=t.getAttribute("platform"),n=l.default.SOCIAL.PLATFORMS[e];t.setAttribute("href",n.URL(l.default.URL,l.default.SOCIAL.MESSAGE,l.default.SOCIAL.TAGS))})}}]),t
+}();e.default=y},
 													function(t,e,n){"use strict";function i(t,e){
-														var n=void 0,i=void 0; 
 														
-														alert("nbof attemps"+e);
+														///////score calculation depending on number of attemps and probabalilties of all permutaion
+														//the rule is : permutation=all possibility/ 2 ^n (n is the number of dots in the level) 
+														//100*(permutationnb-number of atttemps)/permutationnb
+														//////////fatima
+														var n=void 0,i=void 0; 
+														var score=0;
+														if(e<=Math.pow(2,mydifficulttylevel)){score=100;}
+														var maxpossibilities=0;
+														if (mydifficulttylevel==4){maxpossibilities=1624;}
+														if (mydifficulttylevel==5){maxpossibilities=7152;}
+														if (mydifficulttylevel==6){maxpossibilities=26016;}
+														var maxpermit=maxpossibilities/Math.pow(2,mydifficulttylevel);
+														score=100*(maxpermit-e)/maxpermit;
+														console.log("nbof attemps"+e+"in difficulty level"+mydifficulttylevel);
+														console.log(score);
+														console.log("nbof attemps"+e+"in difficulty level"+mydifficulttylevel);
+
+														
 
 ///////////////e id the number of attemps to get solution 															
 return t?(
@@ -405,7 +426,8 @@ var a=[{min:1,max:3,text:"That was pure luck, nothing else. Stop dreamin."},
 {min:11,max:50,text:"That was looooooooong."},{min:11,max:50,text:"At least you made it."},
 {min:11,max:50,text:"You must hate this game by now."},{min:11,max:50,text:"I hope you didn't cheat."},
 {min:41,max:403,text:"Your dedication is impressive."},{min:404,max:404,text:"Logic not found."},
-{min:405,max:999,text:"No comment."}],r=["I believe there's some work to do.","Do you understand the game? Don't take it personnaly, I struggle to explain it.","One day you will make it...","It's not funny for you, but it is for me ;)","Don't stress, you will make it.","If you want to avoid battles, stay out of the grassy areas!","Even if you loose in battle, if you surpass what you've done before, you have bested yourself.","TILT! Insert coin and try again!"];e.default=i},
+{min:405,max:999,text:"No comment."}],r=["I believe there's some work to do.","Do you understand the game? Don't take it personnaly, I struggle to explain it.","One day you will make it...","It's not funny for you, but it is for me ;)","Don't stress, you will make it.","If you want to avoid battles, stay out of the grassy areas!","Even if you loose in battle, if you surpass what you've done before, you have bested yourself.","TILT! Insert coin and try again!"];e.default=i
+},
 function(t,e,n){
 	"use strict";Object.defineProperty(e,"__esModule",{value:!0});
 	var i={greydient:function(t,e){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:0;t="string"==typeof t?parseInt(t,16):t,e="string"==typeof e?parseInt(e,16):e,t=Math.min(255,Math.max(0,t)),e=Math.min(255,Math.max(0,e)),n++;
