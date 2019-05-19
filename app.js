@@ -394,6 +394,8 @@ var e=t.getAttribute("platform"),n=l.default.SOCIAL.PLATFORMS[e];t.setAttribute(
 														console.log("nbof attemps"+e+"in difficulty level"+mydifficulttylevel);
 														console.log(score);
 														console.log("nbof attemps"+e+"in difficulty level"+mydifficulttylevel);
+														
+														////////haitham should call api with (score and competency "Mental Agility")
 
 														
 
